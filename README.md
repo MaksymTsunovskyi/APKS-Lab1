@@ -1,13 +1,42 @@
 # AI Agent for CI/CD Automation
 
-**Student:** Максим Цуньовський  
-**Group:** КІ-405  
-**Variant:** 5
+**Студент:** Максим Цуньовський  
+**Група:** КІ-405  
+**Варіант:** 5  
+**Дисципліна:** АПКС (Лабораторна робота 1)
 
-## Project Description
+## Опис проєкту
+Цей кросплатформний Java-проєкт створений для демонстрації роботи ШІ-агента (AI Build Engineer), який автоматизує процеси CI/CD. Проєкт використовує Maven для збірки та JUnit 5 для тестування, а безперервна інтеграція (CI) налаштована для автоматичного виконання на трьох операційних системах: Windows, macOS та Linux.
 
-A cross-platform Java project demonstrating an AI agent for CI/CD automation. The project uses Maven for builds and JUnit 5 for tests, with CI configured to run on Windows, macOS, and Linux.
+## Структура AI Агента
+У репозиторії реалізовано повноцінну архітектуру агента, яка керує життєвим циклом розробки:
+* **Маніфест:** `.github/agents/build-engineer.agent.md`
+* **Навички (Skills):**
+  * `project-scaffold` — генерація базової структури проєкту.
+  * `build-and-test` — компіляція коду та запуск модульних тестів.
+  * `github-actions` — налаштування кросплатформного пайплайну.
+* **Системні промпти:** Збережені у каталозі `.github/prompts/`.
 
-## How to run the agent
+## Технологічний стек
+* **Мова програмування:** Java 17
+* **Система збірки:** Maven 3+
+* **Фреймворк тестування:** JUnit 5
+* **CI/CD:** GitHub Actions
+* **Локальне тестування:** Bash, Windows Subsystem for Linux (WSL)
 
-<!-- Add instructions for running the agent here. -->
+## Запуск та перевірка локально
+Для локальної збірки проєкту, очищення попередніх білдів та запуску тестів використовується підготовлений скрипт `ci.sh`. 
+
+У середовищі Linux (або WSL) відкрийте термінал у кореневій папці проєкту та виконайте:
+```bash
+bash ci.sh
+У разі успішного проходження тестів термінал виведе повідомлення BUILD SUCCESS.
+
+GitHub Actions CI
+Автоматизація інтеграції налаштована у файлі .github/workflows/ci.yml. Пайплайн запускається автоматично при створенні Pull Request (наприклад, з feature/agent-setup у develop) або при пуші в основні гілки. Перевірка паралельно виконується на матриці з трьох віртуальних машин:
+
+ubuntu-latest
+
+windows-latest
+
+macos-latest
